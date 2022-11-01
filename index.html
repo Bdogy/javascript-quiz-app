@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/reset.css" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script src="/assets/script.js"></script>
 
     <title>Quiz App</title>
   </head>
@@ -14,15 +13,30 @@
     <header>
       <a href=""><h2>High Scores</h2></a>
     </header>
+    <main>
+      <!-- start Screen  -->
+      <div class="startScreen" id="">
+        <h1>JavaScript Quiz</h1>
+        <p>
+          Your Score is determined by you time. Click the play now button to
+          begin!
+        </p>
+        <button id="start">Start</button>
+      </div>
 
-    <main class="startScreen">
-      <h1>JavaScript Quiz</h1>
-      <p>
-        Your Score is determined by you time. Click the play now button to
-        begin!
-      </p>
+      <!-- quiz section  -->
+      <section class="quiz" id="hidden">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.?</p>
+        <button id="option1">A</button>
+        <button id="option2">B</button>
+        <button id="option3">C</button>
+        <button id="option4">D</button>
+      </section>
 
-      <button>Start</button>
+      <section class="scores" id="hidden">
+        <h3>Scores!!!</h3>
+      </section>
     </main>
   </body>
+  <script src="./assets/script.js"></script>
 </html>
