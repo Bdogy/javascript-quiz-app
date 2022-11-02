@@ -19,17 +19,17 @@ var questions = [
     optionD: { value: "D option", correct: false },
   },
   {
-    question: "2: The answers A",
-    optionA: { value: "A option", correct: true },
-    optionB: { value: "B option", correct: false },
+    question: "2: The answers B",
+    optionA: { value: "A option", correct: false },
+    optionB: { value: "B option", correct: true },
     optionC: { value: "C option", correct: false },
     optionD: { value: "D option", correct: false },
   },
   {
-    question: "3: The answers A",
-    optionA: { value: "A option", correct: true },
+    question: "3: The answers C",
+    optionA: { value: "A option", correct: false },
     optionB: { value: "B option", correct: false },
-    optionC: { value: "C option", correct: false },
+    optionC: { value: "C option", correct: true },
     optionD: { value: "D option", correct: false },
   },
   {
@@ -69,48 +69,46 @@ var buildQuiz = function () {
   option4.textContent = questions[index].optionD.value;
   validate();
 };
-
+//check if the programs at the end of the arr
+var isCorrect = function () {
+  if (index === questions.length - 1) {
+    console.log("out of questions");
+    return endOfQuiz();
+  } else {
+    index++;
+    console.log("selected option is corret");
+    return buildQuiz();
+  }
+};
 //different option validation
 var optionAValidate = function () {
   //check if question a is correct
   if (questions[index].optionA.correct) {
-    //run correct answer and move to next
-    index++;
-    console.log("selected option A is corret");
-    return buildQuiz();
+    return isCorrect();
   }
 };
 var optionBValidate = function () {
   //check if question a is correct
   if (questions[index].optionB.correct) {
-    //run correct answer and move to next
-    console.log("selected option B is corret");
-    index++;
-    return buildQuiz();
+    return isCorrect();
   }
 };
 var optionCValidate = function () {
   //check if question a is correct
-  if (questions[index].optionD.correct) {
-    //run correct answer and move to next
-    console.log("selected option C is corret");
-    index++;
-    return buildQuiz();
+  if (questions[index].optionC.correct) {
+    return isCorrect();
   }
 };
 var optionDValidate = function () {
   //check if question a is correct
   if (questions[index].optionD.correct) {
-    //run correct answer and move to next
-    console.log("selected option D is corret");
-    index++;
-    return buildQuiz();
+    return isCorrect();
   }
 };
 
 var validate = function () {
   //checks if index is over the amount of questions
-  if (index === questions.length - 1) {
+  if (index === questions.length) {
     //end game here
     console.log("out of questions");
   }
@@ -119,4 +117,9 @@ var validate = function () {
   option2.addEventListener("click", optionBValidate);
   option3.addEventListener("click", optionCValidate);
   option4.addEventListener("click", optionDValidate);
+};
+
+var endOfQuiz = function () {
+  quizScreen.style.visibility = "hidden";
+  scoresScreen.style.visibility = "visible";
 };
