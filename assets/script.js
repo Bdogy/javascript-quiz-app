@@ -11,6 +11,7 @@ var timerEl = document.getElementById("timer");
 var score = 0;
 var index = 0;
 var timeLeft = 50;
+var endTimer = false;
 
 //questions
 var questions = [
@@ -59,20 +60,21 @@ scoresScreen.style.visibility = "hidden";
 startButton.addEventListener("click", function () {
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
-  timerInterval;
+  timer();
   buildQuiz();
 });
 
 //timer
-var timerInterval = setInterval(function () {
-  timeLeft--;
-  timerEl.textContent = timeLeft;
-  if (timeLeft === 0) {
-    clearInterval(timerInterval);
-    //add exit code
-  }
-}, 1000);
-
+var timer = function () {
+  var timerInterval = setInterval(function () {
+    timeLeft--;
+    timerEl.textContent = timeLeft;
+    if (timeLeft === 0 || endTimer) {
+      clearInterval(timerInterval);
+      //add exit code
+    }
+  }, 1000);
+};
 //builds the quiz and displays to page
 var buildQuiz = function () {
   console.log(index + " index");
@@ -155,7 +157,7 @@ var validate = function () {
 };
 
 var endOfQuiz = function () {
-  clearInterval(timerInterval);
+  endTimer = true;
   quizScreen.style.visibility = "hidden";
   scoresScreen.style.visibility = "visible";
 };
