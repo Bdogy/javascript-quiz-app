@@ -11,6 +11,7 @@ var timerEl = document.getElementById("timer");
 var form = document.getElementById("form");
 var formButton = document.getElementById("formButton");
 var scoreDiv = document.getElementById("scoreDiv");
+var highScores = document.getElementById("highScores");
 var score = 0;
 var index = 0;
 var timeLeft = 50;
@@ -76,6 +77,7 @@ scoresScreen.style.visibility = "hidden";
 
 //start function button
 startButton.addEventListener("click", function () {
+  highScores.style.visibility = "hidden";
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
   timer();
