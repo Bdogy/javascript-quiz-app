@@ -8,7 +8,11 @@ var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
 var timerEl = document.getElementById("timer");
+var form = document.getElementById("form");
+var formButton = document.getElementById("formButton");
+var scoreDiv = document.getElementById("scoreDiv");
 var score = 0;
+var savedScores = JSON.stringify(savedScores);
 var index = 0;
 var timeLeft = 50;
 var endTimer = false;
@@ -90,7 +94,7 @@ var buildQuiz = function () {
 var isCorrect = function () {
   if (index === questions.length - 1) {
     console.log("out of questions");
-    return endOfQuiz();
+    endTimer = true;
   } else {
     index++;
     console.log("selected option is corret");
@@ -103,7 +107,7 @@ var isIncorrect = function () {
   timeLeft = timeLeft - 10;
   if (index === questions.length - 1) {
     console.log("out of questions");
-    return endOfQuiz();
+    endTimer = true;
   } else {
     index++;
     console.log("selected option is wrong");
@@ -158,7 +162,24 @@ var validate = function () {
 };
 
 var endOfQuiz = function () {
-  endTimer = true;
+  console.log("end of quiz");
   quizScreen.style.visibility = "hidden";
   scoresScreen.style.visibility = "visible";
+  saveScore();
+};
+
+var saveScore = function () {
+  console.log("1 pressed");
+  formButton.addEventListener(
+    "click",
+    function (event) {
+      event.preventDefault();
+      score = form.value + " " + timeLeft;
+      scoreDiv.textContent = score;
+      savedScores = savedScores.concat(score);
+      localStorage.setItem("pastScores", JSON.stringify(savedScores));
+      return;
+    },
+    { once: true }
+  );
 };
