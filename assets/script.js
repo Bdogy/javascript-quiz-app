@@ -48,7 +48,6 @@ var questions = [
   },
 ];
 
-console.log(questions[index].optionA.value);
 //hides all other screen except start
 quizScreen.style.visibility = "hidden";
 scoresScreen.style.visibility = "hidden";
@@ -62,7 +61,7 @@ startButton.addEventListener("click", function () {
 
 //builds the quiz and displays to page
 var buildQuiz = function () {
-  console.log(index + "index");
+  console.log(index + " index");
   questionP.textContent = questions[index].question;
   option1.textContent = questions[index].optionA.value;
   option2.textContent = questions[index].optionB.value;
@@ -77,6 +76,7 @@ var optionAValidate = function () {
   if (questions[index].optionA.correct) {
     //run correct answer and move to next
     index++;
+    console.log("selected option A is corret");
     return buildQuiz();
   }
 };
@@ -84,6 +84,7 @@ var optionBValidate = function () {
   //check if question a is correct
   if (questions[index].optionB.correct) {
     //run correct answer and move to next
+    console.log("selected option B is corret");
     index++;
     return buildQuiz();
   }
@@ -92,6 +93,7 @@ var optionCValidate = function () {
   //check if question a is correct
   if (questions[index].optionD.correct) {
     //run correct answer and move to next
+    console.log("selected option C is corret");
     index++;
     return buildQuiz();
   }
@@ -100,6 +102,7 @@ var optionDValidate = function () {
   //check if question a is correct
   if (questions[index].optionD.correct) {
     //run correct answer and move to next
+    console.log("selected option D is corret");
     index++;
     return buildQuiz();
   }
