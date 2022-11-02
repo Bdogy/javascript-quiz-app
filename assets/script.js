@@ -183,7 +183,6 @@ var endOfQuiz = function () {
 };
 
 var saveScore = function () {
-  console.log("1 pressed");
   formButton.addEventListener(
     "click",
     function (event) {
@@ -191,12 +190,15 @@ var saveScore = function () {
       score = form.value + " " + timeLeft;
       localArr = localArr.concat(score);
       localStorage.setItem("pastScores", JSON.stringify(localArr));
+      //Change to display scores section
       //displays each arr element
       for (let i = 0; i < localArr.length; i++) {
-        console.log(localArr[i]);
+        liEl = document.createElement("li");
+        liEl.textContent = localArr[i];
+        scoreDiv.appendChild(liEl);
       }
       //turns local into pares
-      localArr = JSON.parse(localStorage.getItem("pastScores"));
+      // localArr = JSON.parse(localStorage.getItem("pastScores"));
       console.log(localArr + " parse");
     },
     { once: true }
