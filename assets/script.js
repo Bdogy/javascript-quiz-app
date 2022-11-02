@@ -7,7 +7,9 @@ var option1 = document.getElementById("option1");
 var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
+var timerEl = document.getElementById("timer");
 index = 0;
+timeLeft = 50;
 
 //questions
 var questions = [
@@ -56,8 +58,21 @@ scoresScreen.style.visibility = "hidden";
 startButton.addEventListener("click", function () {
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
+  timer();
   buildQuiz();
 });
+
+//timer
+var timer = function () {
+  var timerInterval = setInterval(function () {
+    timeLeft--;
+    timerEl.textContent = timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timerInterval);
+      //add exit code
+    }
+  }, 1000);
+};
 
 //builds the quiz and displays to page
 var buildQuiz = function () {
@@ -80,29 +95,50 @@ var isCorrect = function () {
     return buildQuiz();
   }
 };
+
+//if not correct move on and deduct time
+var isIncorrect = function () {
+  timeLeft = timeLeft - 10;
+  if (index === questions.length - 1) {
+    console.log("out of questions");
+    return endOfQuiz();
+  } else {
+    index++;
+    console.log("selected option is wrong");
+    return buildQuiz();
+  }
+};
 //different option validation
 var optionAValidate = function () {
   //check if question a is correct
   if (questions[index].optionA.correct) {
     return isCorrect();
+  } else {
+    return isIncorrect();
   }
 };
 var optionBValidate = function () {
   //check if question a is correct
   if (questions[index].optionB.correct) {
     return isCorrect();
+  } else {
+    return isIncorrect();
   }
 };
 var optionCValidate = function () {
   //check if question a is correct
   if (questions[index].optionC.correct) {
     return isCorrect();
+  } else {
+    return isIncorrect();
   }
 };
 var optionDValidate = function () {
   //check if question a is correct
   if (questions[index].optionD.correct) {
     return isCorrect();
+  } else {
+    return isIncorrect();
   }
 };
 
