@@ -8,8 +8,9 @@ var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
 var timerEl = document.getElementById("timer");
-index = 0;
-timeLeft = 50;
+var score = 0;
+var index = 0;
+var timeLeft = 50;
 
 //questions
 var questions = [
@@ -58,21 +59,19 @@ scoresScreen.style.visibility = "hidden";
 startButton.addEventListener("click", function () {
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
-  timer();
+  timerInterval;
   buildQuiz();
 });
 
 //timer
-var timer = function () {
-  var timerInterval = setInterval(function () {
-    timeLeft--;
-    timerEl.textContent = timeLeft;
-    if (timeLeft === 0) {
-      clearInterval(timerInterval);
-      //add exit code
-    }
-  }, 1000);
-};
+var timerInterval = setInterval(function () {
+  timeLeft--;
+  timerEl.textContent = timeLeft;
+  if (timeLeft === 0) {
+    clearInterval(timerInterval);
+    //add exit code
+  }
+}, 1000);
 
 //builds the quiz and displays to page
 var buildQuiz = function () {
@@ -88,6 +87,7 @@ var buildQuiz = function () {
 var isCorrect = function () {
   if (index === questions.length - 1) {
     console.log("out of questions");
+    clearInterval(timerInterval);
     return endOfQuiz();
   } else {
     index++;
@@ -101,6 +101,7 @@ var isIncorrect = function () {
   timeLeft = timeLeft - 10;
   if (index === questions.length - 1) {
     console.log("out of questions");
+    clearInterval(timerInterval);
     return endOfQuiz();
   } else {
     index++;
