@@ -10,7 +10,7 @@ var option4 = document.getElementById("option4");
 var timerEl = document.getElementById("timer");
 var score = 0;
 var index = 0;
-var timeLeft = 50;
+var timeLeft = 10;
 var endTimer = false;
 
 //questions
@@ -69,9 +69,10 @@ var timer = function () {
   var timerInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = timeLeft;
-    if (timeLeft === 0 || endTimer) {
+    if (timeLeft <= 0) {
+      //exit code
       clearInterval(timerInterval);
-      //add exit code
+      endOfQuiz();
     }
   }, 1000);
 };
