@@ -12,7 +12,7 @@ var form = document.getElementById("form");
 var formButton = document.getElementById("formButton");
 var scoreDiv = document.getElementById("scoreDiv");
 var score = 0;
-var savedScores = JSON.stringify(savedScores);
+var savedScores = localStorage.getItem("pastScores", JSON.parse);
 var index = 0;
 var timeLeft = 50;
 var endTimer = false;
@@ -55,6 +55,10 @@ var questions = [
     optionD: { value: "D option", correct: false },
   },
 ];
+
+//sets score to html
+//create for loop to make each score into li and append to HTML doc
+scoreDiv.textContent = savedScores;
 
 //hides all other screen except start
 quizScreen.style.visibility = "hidden";
@@ -175,8 +179,8 @@ var saveScore = function () {
     function (event) {
       event.preventDefault();
       score = form.value + " " + timeLeft;
-      scoreDiv.textContent = score;
       savedScores = savedScores.concat(score);
+      scoreDiv.textContent = savedScores;
       localStorage.setItem("pastScores", JSON.stringify(savedScores));
       return;
     },
