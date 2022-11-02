@@ -12,11 +12,11 @@ var form = document.getElementById("form");
 var formButton = document.getElementById("formButton");
 var scoreDiv = document.getElementById("scoreDiv");
 var score = 0;
-var savedScores = localStorage.getItem("pastScores", JSON.parse);
 var index = 0;
 var timeLeft = 50;
 var endTimer = false;
-
+var localScore = localStorage.getItem("pastScores");
+var localArr;
 //questions
 var questions = [
   {
@@ -57,9 +57,18 @@ var questions = [
 ];
 
 //sets score to html
-//create for loop to make each score into li and append to HTML doc
-scoreDiv.textContent = savedScores;
+function localStorageCheck() {
+  if (localStorage.length === 0) {
+    console.log("nothing Stored");
+    localArr = [];
+  } else {
+    console.log("Else");
+  }
+  return localArr;
+}
 
+localStorageCheck();
+console.log(localArr);
 //hides all other screen except start
 quizScreen.style.visibility = "hidden";
 scoresScreen.style.visibility = "hidden";
@@ -179,10 +188,6 @@ var saveScore = function () {
     function (event) {
       event.preventDefault();
       score = form.value + " " + timeLeft;
-      savedScores = savedScores.concat(score);
-      scoreDiv.textContent = savedScores;
-      localStorage.setItem("pastScores", JSON.stringify(savedScores));
-      return;
     },
     { once: true }
   );
