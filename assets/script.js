@@ -63,6 +63,7 @@ function localStorageCheck() {
     localArr = [];
   } else {
     console.log("Else");
+    localArr = JSON.parse(localStorage.getItem("pastScores"));
   }
   return localArr;
 }
@@ -188,6 +189,15 @@ var saveScore = function () {
     function (event) {
       event.preventDefault();
       score = form.value + " " + timeLeft;
+      localArr = localArr.concat(score);
+      localStorage.setItem("pastScores", JSON.stringify(localArr));
+      //displays each arr element
+      for (let i = 0; i < localArr.length; i++) {
+        console.log(localArr[i]);
+      }
+      //turns local into pares
+      localArr = JSON.parse(localStorage.getItem("pastScores"));
+      console.log(localArr + " parse");
     },
     { once: true }
   );
