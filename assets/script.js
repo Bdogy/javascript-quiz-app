@@ -87,7 +87,6 @@ var buildQuiz = function () {
 var isCorrect = function () {
   if (index === questions.length - 1) {
     console.log("out of questions");
-    clearInterval(timerInterval);
     return endOfQuiz();
   } else {
     index++;
@@ -101,7 +100,6 @@ var isIncorrect = function () {
   timeLeft = timeLeft - 10;
   if (index === questions.length - 1) {
     console.log("out of questions");
-    clearInterval(timerInterval);
     return endOfQuiz();
   } else {
     index++;
@@ -157,6 +155,7 @@ var validate = function () {
 };
 
 var endOfQuiz = function () {
+  clearInterval(timerInterval);
   quizScreen.style.visibility = "hidden";
   scoresScreen.style.visibility = "visible";
 };
