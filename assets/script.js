@@ -7,8 +7,8 @@ var option1 = document.getElementById("option1");
 var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
-
 index = 0;
+
 //questions
 var questions = [
   {
@@ -55,7 +55,6 @@ scoresScreen.style.visibility = "hidden";
 
 //start function button
 startButton.addEventListener("click", function () {
-  console.log("clicked!!");
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
   buildQuiz();
@@ -63,6 +62,7 @@ startButton.addEventListener("click", function () {
 
 //builds the quiz and displays to page
 var buildQuiz = function () {
+  console.log(index + "index");
   questionP.textContent = questions[index].question;
   option1.textContent = questions[index].optionA.value;
   option2.textContent = questions[index].optionB.value;
@@ -71,28 +71,36 @@ var buildQuiz = function () {
   validate();
 };
 
+var optionAValidate = function () {
+  //check if question a is correct
+  if (questions[index].optionA.correct) {
+    //run correct answer and move to next
+    index++;
+    console.log(index + "adding index");
+    return buildQuiz();
+  }
+};
+
 var validate = function () {
-  option1.addEventListener("click", function () {
-    //check if question a is correct
-    if (questions[index].optionA.correct) {
+  //runs without reclicking for index 2
+  option1.addEventListener("click", optionAValidate);
+  option2.addEventListener("click", function () {
+    if (questions[index].optionB.correct) {
       //run correct answer and move to next
-      console.log("corret");
       index++;
       return buildQuiz();
-      //next question
-    } else if (questions[index].optionB.correct) {
+    }
+  });
+  option3.addEventListener("click", function () {
+    if (questions[index].optionB.correct) {
       //run correct answer and move to next
-      console.log("corret");
       index++;
       return buildQuiz();
-    } else if (questions[index].optionC.correct) {
+    }
+  });
+  option4.addEventListener("click", function () {
+    if (questions[index].optionB.correct) {
       //run correct answer and move to next
-      console.log("corret");
-      index++;
-      return buildQuiz();
-    } else if (questions[index].optionD.correct) {
-      //run correct answer and move to next
-      console.log("corret");
       index++;
       return buildQuiz();
     }
