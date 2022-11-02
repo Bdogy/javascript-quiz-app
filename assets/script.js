@@ -71,38 +71,49 @@ var buildQuiz = function () {
   validate();
 };
 
+//different option validation
 var optionAValidate = function () {
   //check if question a is correct
   if (questions[index].optionA.correct) {
     //run correct answer and move to next
     index++;
-    console.log(index + "adding index");
+    return buildQuiz();
+  }
+};
+var optionBValidate = function () {
+  //check if question a is correct
+  if (questions[index].optionB.correct) {
+    //run correct answer and move to next
+    index++;
+    return buildQuiz();
+  }
+};
+var optionCValidate = function () {
+  //check if question a is correct
+  if (questions[index].optionD.correct) {
+    //run correct answer and move to next
+    index++;
+    return buildQuiz();
+  }
+};
+var optionDValidate = function () {
+  //check if question a is correct
+  if (questions[index].optionD.correct) {
+    //run correct answer and move to next
+    index++;
     return buildQuiz();
   }
 };
 
 var validate = function () {
-  //runs without reclicking for index 2
+  //checks if index is over the amount of questions
+  if (index === questions.length - 1) {
+    //end game here
+    console.log("out of questions");
+  }
+  //checks evens for each button if true runs option validation
   option1.addEventListener("click", optionAValidate);
-  option2.addEventListener("click", function () {
-    if (questions[index].optionB.correct) {
-      //run correct answer and move to next
-      index++;
-      return buildQuiz();
-    }
-  });
-  option3.addEventListener("click", function () {
-    if (questions[index].optionB.correct) {
-      //run correct answer and move to next
-      index++;
-      return buildQuiz();
-    }
-  });
-  option4.addEventListener("click", function () {
-    if (questions[index].optionB.correct) {
-      //run correct answer and move to next
-      index++;
-      return buildQuiz();
-    }
-  });
+  option2.addEventListener("click", optionBValidate);
+  option3.addEventListener("click", optionCValidate);
+  option4.addEventListener("click", optionDValidate);
 };
