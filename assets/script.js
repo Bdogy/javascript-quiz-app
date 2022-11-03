@@ -87,7 +87,6 @@ formScreen.style.visibility = "hidden";
 startButton.addEventListener("click", function () {
   correctSpanEl.style.visibility = "hidden";
   incorrectSpanEl.style.visibility = "hidden";
-  highScores.style.visibility = "hidden";
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
   timer();
