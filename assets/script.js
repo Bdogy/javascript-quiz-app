@@ -12,6 +12,11 @@ var form = document.getElementById("form");
 var formButton = document.getElementById("formButton");
 var scoreDiv = document.getElementById("scoreDiv");
 var highScores = document.getElementById("highScores");
+var correctSpanEl = document.getElementById("correct");
+var incorrectSpanEl = document.getElementById("wrong");
+var showCorrectSpanEl = false;
+var showInCorrectSpanEl = false;
+
 var score = 0;
 var index = 0;
 var timeLeft = 50;
@@ -77,6 +82,8 @@ scoresScreen.style.visibility = "hidden";
 
 //start function button
 startButton.addEventListener("click", function () {
+  correctSpanEl.style.visibility = "hidden";
+  incorrectSpanEl.style.visibility = "hidden";
   highScores.style.visibility = "hidden";
   startScreen.style.visibility = "hidden";
   quizScreen.style.visibility = "visible";
@@ -99,6 +106,7 @@ var timer = function () {
 //builds the quiz and displays to page
 var buildQuiz = function () {
   console.log(index + " index");
+  //hides correct/incorrect spans
   questionP.textContent = questions[index].question;
   option1.textContent = questions[index].optionA.value;
   option2.textContent = questions[index].optionB.value;
@@ -108,18 +116,22 @@ var buildQuiz = function () {
 };
 //check if the programs at the end of the arr
 var isCorrect = function () {
+  correctSpanEl.style.visibility = "visible";
+  incorrectSpanEl.style.visibility = "hidden";
   if (index === questions.length - 1) {
     console.log("out of questions");
     endTimer = true;
   } else {
     index++;
-    console.log("selected option is corret");
+    console.log("selected option is correct");
     return buildQuiz();
   }
 };
 
 //if not correct move on and deduct time
 var isIncorrect = function () {
+  correctSpanEl.style.visibility = "hidden";
+  incorrectSpanEl.style.visibility = "visible";
   timeLeft = timeLeft - 10;
   if (index === questions.length - 1) {
     console.log("out of questions");
@@ -179,6 +191,8 @@ var validate = function () {
 
 var endOfQuiz = function () {
   console.log("end of quiz");
+  correctSpanEl.style.visibility = "hidden";
+  incorrectSpanEl.style.visibility = "hidden";
   quizScreen.style.visibility = "hidden";
   scoresScreen.style.visibility = "visible";
   saveScore();
