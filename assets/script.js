@@ -8,12 +8,14 @@ var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
 var timerEl = document.getElementById("timer");
+var formScreen = document.getElementById("formScreen");
 var form = document.getElementById("form");
 var formButton = document.getElementById("formButton");
 var scoreDiv = document.getElementById("scoreDiv");
 var highScores = document.getElementById("highScores");
 var correctSpanEl = document.getElementById("correct");
 var incorrectSpanEl = document.getElementById("wrong");
+var clearScores = document.getElementById("clearScores");
 var showCorrectSpanEl = false;
 var showInCorrectSpanEl = false;
 
@@ -79,6 +81,7 @@ console.log(localArr);
 //hides all other screen except start
 quizScreen.style.visibility = "hidden";
 scoresScreen.style.visibility = "hidden";
+formScreen.style.visibility = "hidden";
 
 //start function button
 startButton.addEventListener("click", function () {
@@ -194,7 +197,7 @@ var endOfQuiz = function () {
   correctSpanEl.style.visibility = "hidden";
   incorrectSpanEl.style.visibility = "hidden";
   quizScreen.style.visibility = "hidden";
-  scoresScreen.style.visibility = "visible";
+  formScreen.style.visibility = "visible";
   saveScore();
 };
 
@@ -203,6 +206,10 @@ var saveScore = function () {
     "click",
     function (event) {
       event.preventDefault();
+      //hides form screen and shows scores
+      scoresScreen.style.visibility = "visible";
+      formScreen.style.visibility = "hidden";
+      //sets score value to user input plus time lift as a string
       score = form.value + " " + timeLeft;
       localArr = localArr.concat(score);
       localStorage.setItem("pastScores", JSON.stringify(localArr));
@@ -220,3 +227,11 @@ var saveScore = function () {
     { once: true }
   );
 };
+
+clearScores.addEventListener("click", function () {
+  localStorage.clear();
+  localArr = [];
+  for (let i = 0; i < localArr.length; i++) {
+    scoreDiv.removeChild(scoreDiv.firstChild);
+  }
+});
