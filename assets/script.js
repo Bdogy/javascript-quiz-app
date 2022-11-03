@@ -15,7 +15,6 @@ var scoreDiv = document.getElementById("scoreDiv");
 var highScores = document.getElementById("highScores");
 var correctSpanEl = document.getElementById("correct");
 var incorrectSpanEl = document.getElementById("wrong");
-var clearScores = document.getElementById("clearScores");
 var showCorrectSpanEl = false;
 var showInCorrectSpanEl = false;
 
@@ -226,11 +225,3 @@ var saveScore = function () {
     { once: true }
   );
 };
-
-clearScores.addEventListener("click", function () {
-  localStorage.clear();
-  localArr = [];
-  for (let i = 0; i < localArr.length; i++) {
-    scoreDiv.removeChild(scoreDiv.firstChild);
-  }
-});
