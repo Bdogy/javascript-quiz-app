@@ -1,29 +1,32 @@
-var startScreen = document.getElementById("startScreenId");
 var quizScreen = document.getElementById("quizId");
-var scoresScreen = document.getElementById("scoresId");
-var startButton = document.getElementById("start");
 var questionP = document.getElementById("questionPElement");
 var option1 = document.getElementById("option1");
 var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
 var timerEl = document.getElementById("timer");
+var correctSpanEl = document.getElementById("correct");
+var incorrectSpanEl = document.getElementById("wrong");
 var formScreen = document.getElementById("formScreen");
 var form = document.getElementById("form");
 var formButton = document.getElementById("formButton");
-var scoreDiv = document.getElementById("scoreDiv");
-var highScores = document.getElementById("highScores");
-var correctSpanEl = document.getElementById("correct");
-var incorrectSpanEl = document.getElementById("wrong");
-var showCorrectSpanEl = false;
-var showInCorrectSpanEl = false;
+var localArr;
 
-var score = 0;
+function localStorageCheck() {
+  if (localStorage.length === 0) {
+    console.log("nothing Stored");
+    localArr = [];
+  } else {
+    console.log("Else");
+    localArr = JSON.parse(localStorage.getItem("pastScores"));
+  }
+  return localArr;
+}
+
 var index = 0;
 var timeLeft = 50;
 var endTimer = false;
-var localScore = localStorage.getItem("pastScores");
-var localArr;
+
 //questions
 var questions = [
   {
@@ -62,35 +65,6 @@ var questions = [
     optionD: { value: "D option", correct: false },
   },
 ];
-
-//sets score to html
-function localStorageCheck() {
-  if (localStorage.length === 0) {
-    console.log("nothing Stored");
-    localArr = [];
-  } else {
-    console.log("Else");
-    localArr = JSON.parse(localStorage.getItem("pastScores"));
-  }
-  return localArr;
-}
-
-localStorageCheck();
-console.log(localArr);
-//hides all other screen except start
-quizScreen.style.visibility = "hidden";
-scoresScreen.style.visibility = "hidden";
-formScreen.style.visibility = "hidden";
-
-//start function button
-startButton.addEventListener("click", function () {
-  correctSpanEl.style.visibility = "hidden";
-  incorrectSpanEl.style.visibility = "hidden";
-  startScreen.style.visibility = "hidden";
-  quizScreen.style.visibility = "visible";
-  timer();
-  buildQuiz();
-});
 
 //timer
 var timer = function () {
@@ -198,30 +172,26 @@ var endOfQuiz = function () {
   formScreen.style.visibility = "visible";
   saveScore();
 };
-
 var saveScore = function () {
   formButton.addEventListener(
     "click",
     function (event) {
       event.preventDefault();
       //hides form screen and shows scores
-      scoresScreen.style.visibility = "visible";
       formScreen.style.visibility = "hidden";
       //sets score value to user input plus time lift as a string
       score = form.value + " " + timeLeft;
       localArr = localArr.concat(score);
       localStorage.setItem("pastScores", JSON.stringify(localArr));
       //Change to display scores section
-      //displays each arr element
-      for (let i = 0; i < localArr.length; i++) {
-        liEl = document.createElement("li");
-        liEl.textContent = localArr[i];
-        scoreDiv.appendChild(liEl);
-      }
-      //turns local into pares
-      // localArr = JSON.parse(localStorage.getItem("pastScores"));
-      console.log(localArr + " parse");
+      console.log(localArr);
+      window.location.href = "./scorePage.html";
     },
     { once: true }
   );
 };
+
+formScreen.style.visibility = "hidden";
+localStorageCheck();
+timer();
+buildQuiz();
