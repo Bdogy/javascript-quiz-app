@@ -105,3 +105,8 @@ scoresUl p{
         font-size: 30px;
         font-weight: bold;
 }
+
+.quizButtons {
+    text-align: left;
+    width: 500px;
+}
