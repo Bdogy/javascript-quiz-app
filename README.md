@@ -11,7 +11,7 @@ Link to the github page:
 
 ## Screen shots
 
-![Alt text](assets/screenshots/screenshot1.png)
-![Alt text](assets/screenshots/screenshot2.png)
+![Alt text](Screenshots/Screenshot1.png)
+![Alt text](Screenshots/screenshot2.png)
 
 
