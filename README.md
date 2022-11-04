@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a quiz application built using JavaScript, click the link below to chec
+This is a quiz application built using JavaScript, click the link below to check it out!
 
 ## Github Page
 
