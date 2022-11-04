@@ -100,7 +100,7 @@ h3{
     width: 30%;
 }
 
-scoresUl p{
+.scoresUl p{
         color: #2f3E46 ;
         font-size: 30px;
         font-weight: bold;

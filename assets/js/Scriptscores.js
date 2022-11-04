@@ -9,5 +9,5 @@ for (let i = 0; i < localArr.length; i++) {
 }
 
 playAgain.addEventListener("click", function () {
-  window.location.href = "./StartPage.html";
+  window.location.href = "../../StartPage.html";
 });
