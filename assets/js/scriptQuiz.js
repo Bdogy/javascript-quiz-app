@@ -1,3 +1,4 @@
+var scoreDisplay = document.getElementById("display-score");
 var quizScreen = document.getElementById("quizId");
 var questionP = document.getElementById("questionPElement");
 var option1 = document.getElementById("option1");
@@ -166,6 +167,7 @@ var validate = function () {
 
 var endOfQuiz = function () {
   console.log("end of quiz");
+  timerEl.style.visibility = "hidden";
   correctSpanEl.style.visibility = "hidden";
   incorrectSpanEl.style.visibility = "hidden";
   quizScreen.style.visibility = "hidden";
@@ -173,6 +175,7 @@ var endOfQuiz = function () {
   saveScore();
 };
 var saveScore = function () {
+  scoreDisplay.textContent = timeLeft;
   formButton.addEventListener(
     "click",
     function (event) {
@@ -191,6 +194,8 @@ var saveScore = function () {
   );
 };
 
+correctSpanEl.style.visibility = "hidden";
+incorrectSpanEl.style.visibility = "hidden";
 formScreen.style.visibility = "hidden";
 localStorageCheck();
 timer();

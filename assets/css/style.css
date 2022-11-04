@@ -10,6 +10,12 @@ header {
     display: flex;
     justify-content: space-around;
 }
+
+h3{
+    color: #2f3E46 ;
+    font-size: 30px;
+    font-weight: bold;
+}
 .startScreen {
     display: flex;
     flex-direction: column;
@@ -37,16 +43,11 @@ header {
 .scores h3{
     font-size: 35px;
 }
-.scores div {
-    border-radius: 40px;
-    background-color: rgb(190, 190, 190);
-    width: 300px;
-    height: 300px;
-}
 
 .custom-btn {
     border-color: #354f52;
     background-color: #354f52;
+    color: aliceblue;
 }
 
 .custom-btn:hover {
@@ -70,3 +71,37 @@ header {
     color: #2f3E46;
 }
 
+#quizId {
+    background-color: aliceblue ;
+
+}
+
+#quizId p{
+    color: #2f3E46 ;
+    font-size: large;
+    font-weight: bold;
+}
+
+#timer {
+    color:aliceblue ;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#formScreen p{
+    color: #2f3E46 ;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.custom-light-background{
+    background-color: rgb(255, 255, 255) ;
+    height: 50%;
+    width: 30%;
+}
+
+scoresUl p{
+        color: #2f3E46 ;
+        font-size: 30px;
+        font-weight: bold;
+}
