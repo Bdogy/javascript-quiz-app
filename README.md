@@ -7,7 +7,7 @@ This is a quiz application built using JavaScript, click the link below to chec
 ## Github Page
 
 Link to the github page:
-(https://bdogy.github.io/javascript-quiz-app/)
+(https://bdogy.github.io/javascript-quiz-app/index.html)
 
 ## Screen shots
 
